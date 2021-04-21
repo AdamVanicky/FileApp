@@ -11,11 +11,12 @@ namespace FileApp
     {
         static void Main(string[] args)
         {
+            start:
             List<int> liPositions = new List<int>();
             string path = "ThreeMenInABoatEnglish.txt";
             string returnPath = "returnFile.txt";
 
-            if (File.Exists(path))
+            if (File.Exists(path) || File.Exists(returnPath))
             {
                 string[] rows = File.ReadAllLines(path);
 
@@ -59,6 +60,11 @@ namespace FileApp
                     }
                 }
                 Console.ReadLine();
+            }
+            else
+            {
+                File.Create(returnPath);
+                goto start;
             }
         }
     }
